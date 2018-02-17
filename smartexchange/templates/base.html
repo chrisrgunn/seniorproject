@@ -1,0 +1,38 @@
+<!-- This file is extended on every page. Only put HTML in this file that
+will be extended across all pages. For example, every page is going to need
+to import Bootstrap, Favicon, and our Navigation bar, so those are all placed here -->
+
+<html>
+    <head>
+        <!-- when other template files add header content, this is where it goes -->
+        {% block header_content %}{% endblock %}
+
+        <!-- Bootstrap minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+
+        <!-- Custom CSS -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/stylesheet.css') }}">
+
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+        <!-- JavaScript library -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <div id="body-container">
+            <!-- flash messages -->
+            <div id="snackbar">{% include "flash.html" %}</div>
+
+            <!-- when other template files add header content, this is where it goes -->
+            {% block body_content %}{% endblock %}
+            <br>
+        </div>
+    </body>
+
+    <footer>
+        <!-- when other template files add header content, this is where it goes -->
+        {% block footer_content %}{% endblock %}
+    </footer>
+</html>
