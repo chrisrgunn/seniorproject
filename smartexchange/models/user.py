@@ -1,13 +1,12 @@
-from database import db
+from app import db
 
-class User(db.Model):
-    id = db.Column(db.Integer, primary_key=True)
-    username = db.Column(db.String(64), index=True, unique=True)
-    name = db.Column(db.String(64))
-    password = db.Column(db.String(1000))
-    email = db.Column(db.String(120), index=True, unique=True)
-    avatar_image_reference = db.Column(db.String(1000))
-    authenticated = db.Column(db.Boolean, default=False)
+class User(db.Document):
+    name = db.StringField()
+    username = db.StringField()
+    email = db.StringField()
+    password = db.StringField()
+    authenticated = db.BoolField(default=False)
+    avatar_image_reference = db.StringField(default=None)
 
     def add_user(self):
         db.session.add(self)

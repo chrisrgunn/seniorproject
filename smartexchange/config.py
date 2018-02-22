@@ -13,4 +13,4 @@ MONGOALCHEMY_CONNECTION_STRING = 'mongodb://localhost:27017/smartexchange'
 # # UPLOAD_FOLDER = 'app/static/images'
 # UPLOAD_FOLDER = 'static/images'
 # ALLOWED_EXTENSIONS = set(['png', 'jpg', 'jpeg', 'gif'])
-# SALT = '36dcb01de5d046d88b9a3701edf11c31' # used for password encryption
+SALT = '36dcb01de5d046d88b9a3701edf11c31' # used for password encryption

@@ -1,4 +1,4 @@
-from app import app, render_template
+from app import app, render_template, session
 #
 # @app.route('/')
 # @app.route('/index')
@@ -13,8 +13,7 @@ from app import app, render_template
 @app.route('/home')
 @app.route('/index')
 def index():
-
-    #
-    # if 'username' in session:
-    #     return 'You are logged in as ' + session['username']
-    return render_template('index.html')
+    # if session['username'] is not None:
+    #     if 'username' in session:
+    #         return 'You are logged in as ' + session['username']
+    return render_template('home.html')

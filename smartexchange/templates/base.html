@@ -11,17 +11,23 @@ to import Bootstrap, Favicon, and our Navigation bar, so those are all placed he
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
         <!-- Custom CSS -->
-        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/stylesheet.css') }}">
+        <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/custom.css') }}">
 
         <!-- jQuery library -->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
         <!-- JavaScript library -->
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+        <!-- Custom JS -->
+        <script src="{{ url_for('static', filename='javascript/custom.js') }}"></script>
+
+
     </head>
 
     <body>
         <div id="body-container">
+
             <!-- flash messages -->
             <div id="snackbar">{% include "flash.html" %}</div>
 

@@ -1,0 +1,66 @@
+<!--asdfas-->
+
+
+<div id="registration-modal" class="modal sign-up-mode">
+        <div id="registration-container">
+            <div class="cont_centrar">
+            <span onclick="document.getElementById('registration-modal').style.display='none'" class="close" title="Close Modal">&times;</span>
+
+                <div class="cont_login">
+                    <form method="POST" action="{{ url_for('register') }}">
+                        <div class="cont_tabs_login">
+                            <ul class='ul_tabs'>
+                                <li class="active"><a href="#" onclick="signIn()">SIGN IN</a>
+                                    <span class="linea_bajo_nom"></span>
+                                </li>
+                                <li><a href="#up" onclick="signUp()">SIGN UP</a><span class="linea_bajo_nom"></span>
+                                </li>
+                            </ul>
+                        </div>
+                        <div class="cont_text_inputs">
+                            <input type="text" class="input_form_sign sign-up-field" placeholder="NAME" name="name"/>
+                            <input type="text" class="input_form_sign sign-up-field" placeholder="USERNAME" name="username"/>
+                            <input type="text" class="input_form_sign sign-up-field" placeholder="EMAIL" name="email"/>
+
+
+                            <input type="text" class="input_form_sign d_block active_inp sign-in-field" placeholder="EMAIL / USERNAME"
+                                   name="username/email"/>
+
+                            <input type="password" class="input_form_sign d_block  active_inp" placeholder="PASSWORD"
+                                   name="password"/>
+                            <input type="password" class="input_form_sign sign-up-field" placeholder="CONFIRM PASSWORD"
+                                   name="confirm_password" style="display:none;"/>
+
+                            <a href="#" class="link_forgot_pass d_block sign-in-field">Forgot Password ?</a>
+                            <div class="terms_and_cons d_none">
+                                <p><input type="checkbox" name="terms_and_cons"/> <label for="terms_and_cons">Accept
+                                    Terms and
+                                    Conditions.</label></p>
+
+                            </div>
+                        </div>
+                        <div class="cont_btn">
+                            <input name="form-btn" type="submit" class="btn_sign btn-sign-in" value="SIGN IN">
+                            <input name="form-btn" type="submit" class="btn_sign btn-sign-up" style="display:none;" value="SIGN UP">
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div> <!-- /END registration modal -->
+</div>
+
+<script>
+// Get the modal
+var modal = document.getElementById('reg-container');
+var modalParent = document.getElementById('registration-modal');
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+        modalParent.style.display = "none";
+    }
+}
+
+
+</script>
