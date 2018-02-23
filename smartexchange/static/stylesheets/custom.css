@@ -146,7 +146,7 @@ body{
 /* background-image: linear-gradient(-87deg, #F2F5F6 0%, #DDE5E8 100%);*/
 }
 
-.cont_centrar {
+.registration-block {
   position: absolute;
   width: 320px;
   left:50%;
@@ -155,7 +155,7 @@ body{
   margin-top: -160px;
 }
 
-.cont_centrar {
+.registration-block {
   position: relative;
   width: 320px;
   float: left;
@@ -165,7 +165,7 @@ body{
 transition: all 0.5s;
 }
 
-.cent_active {
+.registration-active {
     box-shadow: 5px 5px 10px 0px rgba(0,0,0,0.21);
 }
 

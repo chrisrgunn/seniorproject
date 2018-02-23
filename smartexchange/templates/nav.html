@@ -1,25 +1,13 @@
 <div id='cssmenu'>
 <ul>
    <li class='active'><a href='/'><span>Home</span></a></li>
-   <li class='has-sub'><a href='#'><span>About</span></a>
-      <!--<ul>-->
-         <!--<li><a href='#'><span>Product 1</span></a></li>-->
-         <!--<li><a href='#'><span>Product 2</span></a></li>-->
-         <!--<li class='last'><a href='#'><span>Product 3</span></a></li>-->
-      <!--</ul>-->
-   </li>
+   <li class='has-sub'><a href='#'><span>About</span></a></li>
 
    {% if session['username'] %}
       <li class='last'><a href="/logout" style="width:auto;"><span>Log Out</span></a></li>
    {% else %}
-      <li class='has-sub'><a onclick="document.getElementById('registration-modal').style.display='block';signInFast();" style="width:auto;"><span>Sign In</span></a>
-         <!--<ul>-->
-            <!--<li><a href='#'><span>Company</span></a></li>-->
-            <!--<li class='last'><a href='#'><span>Contact</span></a></li>-->
-         <!--</ul>-->
-      </li>
+      <li class='has-sub'><a onclick="document.getElementById('registration-modal').style.display='block';signInFast();" style="width:auto;"><span>Sign In</span></a></li>
       <li class='last'><a onclick="document.getElementById('registration-modal').style.display='block';signUpFast();" style="width:auto;"><span>Sign Up</span></a></li>
-
    {% endif %}
 </ul>
 </div>

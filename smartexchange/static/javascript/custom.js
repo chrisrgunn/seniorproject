@@ -1,5 +1,10 @@
 
-//REGISTRATION
+// All custom JavaScript goes here
+
+
+/************************
+    REGISTRATION
+************************/
 
 function signUp(){
     var inputs = document.querySelectorAll('.input_form_sign');
@@ -125,14 +130,18 @@ function signInFast(){
     document.querySelector('.btn-sign-up').style.display="none";
 } // end signIn()
 
+/*
+Shows the flash message popup
+*/
 function showSnackbar() {
     var snackbar = $('#snackbar');
     snackbar.addClass('show');
     setTimeout(function(){ snackbar.removeClass('show'); }, 3000);
 }
 
+
 window.onload =function(){
-    document.querySelector('.cont_centrar').className = "cont_centrar cent_active";
+    document.querySelector('.registration-block').className = "registration-block registration-active";
 }
 
 $(document).ready(function(){
@@ -141,10 +150,8 @@ $(document).ready(function(){
     html = html.replace(/\s/g,'');
     if (html != "")
         showSnackbar();
-    /*
-    $('#snackbar').bind("DOMSubtreeModified",function(){
-        showSnackbar();
-    });
-    */
+
+
+
 }); // end ready function
 

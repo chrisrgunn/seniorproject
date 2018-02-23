@@ -1,13 +1,10 @@
-<!--asdfas-->
-
-
 <div id="registration-modal" class="modal sign-up-mode">
         <div id="registration-container">
-            <div class="cont_centrar">
+            <div class="registration-block">
             <span onclick="document.getElementById('registration-modal').style.display='none'" class="close" title="Close Modal">&times;</span>
 
                 <div class="cont_login">
-                    <form method="POST" action="{{ url_for('register') }}">
+                    <form method="POST" action="{{ url_for('index') }}">
                         <div class="cont_tabs_login">
                             <ul class='ul_tabs'>
                                 <li class="active"><a href="#" onclick="signIn()">SIGN IN</a>
@@ -50,17 +47,13 @@
 </div>
 
 <script>
-// Get the modal
-var modal = document.getElementById('reg-container');
+var modal = document.getElementById('registration-container');
 var modalParent = document.getElementById('registration-modal');
 
 // When the user clicks anywhere outside of the modal, close it
 window.onclick = function(event) {
     if (event.target == modal) {
-        modal.style.display = "none";
         modalParent.style.display = "none";
     }
 }
-
-
 </script>
