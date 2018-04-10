@@ -48,7 +48,7 @@ body{
   float: left;
   position: relative;
 }
-#cssmenu > ul > li > a {
+#cssmenu > ul > .nav-li > a {
   padding: 23px 26px;
   display: block;
   color: white;
@@ -59,12 +59,12 @@ body{
   text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.7);
   line-height: 18px;
 }
-#cssmenu > ul > li:hover > a {
+#cssmenu > ul > .nav-li:hover > a {
   background: url(/static/images/highlight-bg.png) repeat;
   text-shadow: 0 -1px 0 #97321f;
   text-shadow: 0 -1px 0 rgba(122, 42, 26, 0.64);
 }
-#cssmenu > ul > li > a > span {
+#cssmenu > ul > .nav-li > a > span {
   line-height: 18px;
 }
 #cssmenu > ul > li.active > a,
@@ -105,7 +105,7 @@ body{
   margin: 0;
   width: 100%;
 }
-#cssmenu > ul ul li a {
+#cssmenu > ul ul .nav-li a {
   padding: 18px 26px;
   display: block;
   color: white;
@@ -119,12 +119,31 @@ body{
   -ms-transition: all 0.35s ease-in-out;
   transition: all 0.35s ease-in-out;
 }
-#cssmenu > ul ul li a:hover {
+#cssmenu > ul ul .nav-li a:hover {
   border-left: 4px solid #d64e34;
   background: url(/static/images/hover.png) repeat;
 }
-#cssmenu > ul ul li a:active {
+#cssmenu > ul ul .nav-li a:active {
   background: url(/static/images/menu-bg.png) repeat;
+}
+
+.welcome-nav{
+    float:right !important;
+    padding: 17px 26px !important;
+}
+
+.welcome-nav-text{
+    color:white;
+    font-size: 19px;
+}
+
+.logout-nav-text{
+    color:#a34f46;
+}
+
+.logout-nav-text:hover{
+    text-decoration: underline;
+    color:#a34f46;
 }
 
 
@@ -132,7 +151,7 @@ body{
       REGISTRATION MODAL
 *******************************/
 
-* {
+#registration-modal {
   margin: 0px auto;
   padding: 0px;
   font-family: 'Open Sans', sans-serif;
@@ -448,4 +467,118 @@ SNACKBAR
 @keyframes fadeout {
     from {top: 30px; opacity: 1;}
     to {top: 0; opacity: 0;}
+}
+
+
+/**********************************
+HOMEPAGE
+***********************************/
+
+.homepage-row-1{
+    width:100%;
+    height:70%;
+    background-image: url("/static/images/Forex-Currency-Trading.jpeg");
+}
+
+.homepage-headline-spacer{
+    width:100%;
+    height: 150px;
+}
+
+.homepage-headline{
+    width: 500px;
+    height: 500px;
+    margin-left: 200px;
+}
+
+.homepage-headline h1{
+    color:white;
+}
+
+.homepage-headline p{
+    font-size:20px;
+    color:white;
+}
+
+.homepage-row-2{
+    width: 100%;
+    height: 200px;
+    background: #dddddd;
+}
+
+.homepage-row-2 .price-col{
+    height:100%;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    padding-right: 0px !important;
+    padding-right: 0px !important;
+}
+
+.homepage-row-2 .price-container{
+    border-right: 2px solid #a5a4a4;
+}
+
+.homepage-row-2 .price-col:last-child .price-container{
+    border-right: 0px !important;
+}
+
+.homepage-row-2 .price-container{
+    width:100%;
+    height:100%;
+    margin: auto !important;
+}
+
+.homepage-row-2 .price-header{
+    font-size: 18px;
+    font-weight: 700;
+    text-align: center;
+}
+
+.homepage-row-2 .price-value{
+    text-align: center;
+    vertical-align: middle;
+    line-height: 90px;
+    font-size: 24px;
+    font-weight: 900;
+}
+
+.homepage-row-3{
+    width: 100%;
+    height: 500px;
+    background: white;
+}
+
+.homepage-row-3 .header-row{
+    padding-bottom:50px;
+    padding-top:30px;
+}
+
+.homepage-row-3 .header-row h2{
+    text-align: center;
+}
+
+.homepage-row-3 .row-3-header{
+    text-align: center;
+}
+
+.homepage-row-3 .glyphicon {
+    font-size: 100px;
+    color: #b53f05;
+}
+
+.btn-danger{
+    background-color: #b53f05;
+    border-color: #b53f05;
+}
+
+/**************************
+NEW PREDICTION
+***************************/
+
+.dataset-container{
+    max-width: 500px;
+}
+
+.date-predict-container{
+    max-width: 250px;
 }

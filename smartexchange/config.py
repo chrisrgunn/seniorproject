@@ -3,4 +3,4 @@
 MONGOALCHEMY_DATABASE = 'smartexchange'
 MONGOALCHEMY_CONNECTION_STRING = 'mongodb://localhost:27017/smartexchange'
 
-SALT = '36dcb01de5d046d88b9a3701edf11c31' # used for password encryption
+SALT = b'$2b$12$WDSY0pVdH/OP7RuzGJouBe'

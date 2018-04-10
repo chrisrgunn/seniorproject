@@ -1,0 +1,175 @@
+{% extends "base.html" %}
+
+{% block header_content %}
+    <title>Smart Currency Exchange</title>
+
+{% endblock %}
+
+{% block body_content %}
+    {% include "nav.html" %}
+    <script src="{{ url_for('static', filename='javascript/bootstrap-datepicker.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/bootstrap-datepicker3.css') }}">
+
+    <script>
+
+
+    $(document).ready(function(){
+
+        // init the date range picker
+        $('.input-daterange').datepicker({
+            endDate: "today",
+            todayHighlight: true
+        });
+
+        // init the date picker
+        $('.datepicker').datepicker({
+            startDate: '1d',
+            todayHighlight: true
+        });
+
+    }); // end ready function
+
+    function setNumDays(){
+        var fromDate = $('#dataset-from-date').val();
+        var toDate = $('#dataset-to-date').val();
+
+        if (fromDate != '' && toDate != ''){
+            var fromDateFormatted = new Date(fromDate);
+            var toDateFormatted = new Date(toDate);
+
+            var days = (toDateFormatted - fromDateFormatted) / 1000 / 60 / 60 / 24;
+            days = days - (toDateFormatted.getTimezoneOffset() - fromDateFormatted.getTimezoneOffset()) / (60 * 24);
+
+            $('#dataset-num-days').text('Dataset (' + days + ') days');
+        } // end if
+
+    } // end setNumDays
+
+
+
+
+
+    </script>
+
+    <div class="container">
+        <h2>Create a new prediction</h2>
+        <br>
+
+        <h4>Currency (from)</h4>
+
+        <select class="form-control" id="select-currency-from" style="max-width:250px;">
+            <option value="Select">Select a currency</option>
+            <option value="AUD">AUD</option>
+            <option value="BGN">BGN</option>
+            <option value="BRL">BRL</option>
+            <option value="CAD">CAD</option>
+            <option value="CHF">CHF</option>
+            <option value="CNY">CNY</option>
+            <option value="CZK">CZK</option>
+            <option value="DKK">DKK</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="HKD">HKD</option>
+            <option value="HRK">HRK</option>
+            <option value="HUF">HUF</option>
+            <option value="IDR">IDR</option>
+            <option value="ILS">ILS</option>
+            <option value="INR">INR</option>
+            <option value="ISK">ISK</option>
+            <option value="JPY">JPY</option>
+            <option value="KRW">KRW</option>
+            <option value="MXN">MXN</option>
+            <option value="MYR">MYR</option>
+            <option value="NOK">NOK</option>
+            <option value="NZD">NZD</option>
+            <option value="PHP">PHP</option>
+            <option value="PLN">PLN</option>
+            <option value="RON">RON</option>
+            <option value="RUB">RUB</option>
+            <option value="SEK">SEK</option>
+            <option value="SGD">SGD</option>
+            <option value="THB">THB</option>
+            <option value="TRY">TRY</option>
+            <option value="USD">USD</option>
+            <option value="ZAR">ZAR</option>
+        </select>
+        <br>
+
+        <h4>Currency (to)</h4>
+        <select class="form-control" id="select-currency-to" style="max-width:250px;">
+            <option value="Select">Select a currency</option>
+            <option value="AUD">AUD</option>
+            <option value="BGN">BGN</option>
+            <option value="BRL">BRL</option>
+            <option value="CAD">CAD</option>
+            <option value="CHF">CHF</option>
+            <option value="CNY">CNY</option>
+            <option value="CZK">CZK</option>
+            <option value="DKK">DKK</option>
+            <option value="EUR">EUR</option>
+            <option value="GBP">GBP</option>
+            <option value="HKD">HKD</option>
+            <option value="HRK">HRK</option>
+            <option value="HUF">HUF</option>
+            <option value="IDR">IDR</option>
+            <option value="ILS">ILS</option>
+            <option value="INR">INR</option>
+            <option value="ISK">ISK</option>
+            <option value="JPY">JPY</option>
+            <option value="KRW">KRW</option>
+            <option value="MXN">MXN</option>
+            <option value="MYR">MYR</option>
+            <option value="NOK">NOK</option>
+            <option value="NZD">NZD</option>
+            <option value="PHP">PHP</option>
+            <option value="PLN">PLN</option>
+            <option value="RON">RON</option>
+            <option value="RUB">RUB</option>
+            <option value="SEK">SEK</option>
+            <option value="SGD">SGD</option>
+            <option value="THB">THB</option>
+            <option value="TRY">TRY</option>
+            <option value="USD">USD</option>
+            <option value="ZAR">ZAR</option>
+        </select>
+        <br>
+
+        <h4 id="dataset-num-days">Dataset (0) days</h4>
+        <div class="dataset-container">
+
+        <div class="input-daterange input-group" id="datepicker">
+            <input type="text" class="input-sm form-control" name="start" onchange="setNumDays()" id="dataset-from-date"/>
+            <span class="input-group-addon">to</span>
+            <input type="text" class="input-sm form-control" name="end" data-date-end-date="0d" onchange="setNumDays()" id="dataset-to-date"/>
+        </div>
+
+
+        </div>
+        <br>
+
+        <h4>Date to predict</h4>
+        <div class="date-predict-container">
+            <div class="input-group date datepicker">
+                <input type="text" class="form-control">
+                <div class="input-group-addon">
+                    <span class="glyphicon glyphicon-th"></span>
+                </div>
+            </div>
+        </div>
+        <br>
+
+        <br>
+        <button type="button" class="btn btn-danger btn-lg">Generate Prediction</button>
+
+
+
+    </div> <!-- /container -->
+
+
+
+
+{% endblock %}
+
+{% block footer_content %}
+    {% include "registration.html" %}
+{% endblock %}
