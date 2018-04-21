@@ -8,9 +8,123 @@
 {% block body_content %}
     {% include "nav.html" %}
 
-<h2>My Predictions (coming soon)</h2>
+<script>
+    $('document').ready(function(){
+        $('.panel-collapse').first().addClass('in');
+        $('.order-header').first().attr('aria-expanded', 'true');
 
-<h2><a href="/new_prediction">New Prediction</a></h2>
+        $('#currency-tracker-nav').addClass('active');
+    });
+
+
+
+</script>
+<br>
+<a href="/new_prediction" style="padding-left: 30px;"><button type="button" class="btn btn-danger btn-lg">New Prediction</button></a>
+
+
+<div class="container-margin-25">
+    <div class="box box--white box--is-rounded box--has-shadow" style="min-height: 75%;">
+    <h2 style="margin-left: 25px;">My Predictions</h2>
+    <br>
+    <!--<p><strong>Note:</strong> The <strong>data-parent</strong> attribute makes sure that all collapsible elements under the specified parent will be closed when one of the collapsible item is shown.</p>-->
+    <div class="panel-group" id="my-orders">
+
+        {% for prediction in predictions %}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <a class="order-header" data-toggle="collapse" data-parent="#my-orders" href="#collapse{{ loop.index }}" aria-expanded="false" style="color:black;">
+                        <div class="row order-row">
+                            <div class="col-sm-3">
+                                <h4 class="panel-title">
+                                    <div class="row">Prediction #{{loop.index }}</div>
+                                </h4>
+                                    <div class="row">{{ prediction.date.strftime("%A, %B %d %Y %I:%M%p") }}</div>
+                            </div>
+                            <div class="col-sm-3">
+                                <div class="row">
+                                    <span><strong>Currency From:</strong> {{ prediction.exchange.currency_from }}</span>
+                                </div>
+                                <div class="row">
+                                    <span><strong>Currency To:</strong> {{ prediction.exchange.currency_to }}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="row">
+                                    <span><strong>Prev. Days:</strong> {{ prediction.num_days_in_past }}</span>
+                                </div>
+                                <div class="row">
+                                    <span><strong>Future Days:</strong> {{ prediction.num_days_in_future }}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="row">
+                                    <span><strong>Seq Length:</strong> {{ prediction.seq_len }}</span>
+                                </div>
+                                <div class="row">
+                                    <span><strong>Epochs:</strong> {{ prediction.epochs }}</span>
+                                </div>
+                            </div>
+                            <div class="col-sm-2">
+                                <div class="row">
+                                    <span><strong>Batch Size:</strong> {{ prediction.batch_size }}</span>
+                                </div>
+                                <div class="row">
+                                    <span></span>
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div id="collapse{{ loop.index }}" class="panel-collapse collapse">
+                    <div class="panel-body">
+                        <div class="panel-body">
+                            <table class="table table-bordered">
+                                <thead>
+                                <tr>
+                                    <th>Date</th>
+                                    <th>Price</th>
+                                    <th>Fluctuation</th>
+                                </tr>
+                                </thead>
+                                <tbody>
+
+                                {% for trade_rate in prediction.trade_rates %}
+
+                                    {% if loop.index==1 %}
+                                        <tr class="active">
+                                            <td>{{ trade_rate.date.strftime('%m-%d-%Y') }} (known that day)</td>
+                                            <td>{{ '%0.4f' % trade_rate.price|float }}</td>
+                                            <td></td>
+                                        </tr>
+
+                                    {% else %}
+                                        <tr class="{{ 'success' if prediction.trade_rates[0].price<trade_rate.price else 'danger' }}">
+                                            <td>{{ trade_rate.date.strftime('%m-%d-%Y') }}</td>
+                                            <td>{{ '%0.4f' % trade_rate.price|float }}</td>
+                                            <td>{{ '+' if prediction.trade_rates[0].price < trade_rate.price }}{{ '%0.4f' % (trade_rate.price-prediction.trade_rates[0].price)|float }}&nbsp;({{ '%0.2f' % (100*(trade_rate.price-prediction.trade_rates[0].price)/prediction.trade_rates[0].price)|float }}%)</td>
+                                        </tr>
+                                    {% endif %}
+
+                                {% endfor %}
+                                </tbody>
+                            </table>
+
+                        </div>
+                    </div>
+                </div>
+            </div> <!-- /panel panel-default -->
+        {% else %}
+            <h1>No orders found!</h1>
+        {% endfor %}
+    </div> <!-- /#my-orders -->
+        </div>
+</div> <!-- /container -->
+
+
+
+
+
 
 {% endblock %}
 

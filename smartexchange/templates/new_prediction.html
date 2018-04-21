@@ -1,16 +1,16 @@
 {% extends "base.html" %}
 
 {% block header_content %}
-    <title>Smart Currency Exchange</title>
+<title>Smart Currency Exchange</title>
 
 {% endblock %}
 
 {% block body_content %}
-    {% include "nav.html" %}
-    <script src="{{ url_for('static', filename='javascript/bootstrap-datepicker.js') }}"></script>
-    <link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/bootstrap-datepicker3.css') }}">
+{% include "nav.html" %}
+<script src="{{ url_for('static', filename='javascript/bootstrap-datepicker.js') }}"></script>
+<link rel="stylesheet" href="{{ url_for('static', filename='stylesheets/bootstrap-datepicker3.css') }}">
 
-    <script>
+<script>
 
 
     $(document).ready(function(){
@@ -26,6 +26,8 @@
             startDate: '1d',
             todayHighlight: true
         });
+
+        $('#currency-tracker-nav').addClass('active');
 
     }); // end ready function
 
@@ -46,130 +48,236 @@
     } // end setNumDays
 
 
+    var myVar;
+
+    function myFunction() {
+        myVar = setTimeout(showPage, 3000);
+    }
+
+    function showPage() {
+      document.getElementById("loader").style.display = "none";
+      document.getElementById("myDiv").style.display = "block";
+    }
+
+    function showLoader(){
+       document.getElementById("loader").style.display = "block";
+       document.getElementById("plot-container").style.display = "none";
+
+    }
+
+</script>
 
 
-
-    </script>
-
-    <div class="container">
+<div class="row-one" style="width:100%; height:650px;">
+    <div class="col-sm-6">
         <h2>Create a new prediction</h2>
         <br>
 
-        <h4>Currency (from)</h4>
-
-        <select class="form-control" id="select-currency-from" style="max-width:250px;">
-            <option value="Select">Select a currency</option>
-            <option value="AUD">AUD</option>
-            <option value="BGN">BGN</option>
-            <option value="BRL">BRL</option>
-            <option value="CAD">CAD</option>
-            <option value="CHF">CHF</option>
-            <option value="CNY">CNY</option>
-            <option value="CZK">CZK</option>
-            <option value="DKK">DKK</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="HKD">HKD</option>
-            <option value="HRK">HRK</option>
-            <option value="HUF">HUF</option>
-            <option value="IDR">IDR</option>
-            <option value="ILS">ILS</option>
-            <option value="INR">INR</option>
-            <option value="ISK">ISK</option>
-            <option value="JPY">JPY</option>
-            <option value="KRW">KRW</option>
-            <option value="MXN">MXN</option>
-            <option value="MYR">MYR</option>
-            <option value="NOK">NOK</option>
-            <option value="NZD">NZD</option>
-            <option value="PHP">PHP</option>
-            <option value="PLN">PLN</option>
-            <option value="RON">RON</option>
-            <option value="RUB">RUB</option>
-            <option value="SEK">SEK</option>
-            <option value="SGD">SGD</option>
-            <option value="THB">THB</option>
-            <option value="TRY">TRY</option>
-            <option value="USD">USD</option>
-            <option value="ZAR">ZAR</option>
-        </select>
-        <br>
-
-        <h4>Currency (to)</h4>
-        <select class="form-control" id="select-currency-to" style="max-width:250px;">
-            <option value="Select">Select a currency</option>
-            <option value="AUD">AUD</option>
-            <option value="BGN">BGN</option>
-            <option value="BRL">BRL</option>
-            <option value="CAD">CAD</option>
-            <option value="CHF">CHF</option>
-            <option value="CNY">CNY</option>
-            <option value="CZK">CZK</option>
-            <option value="DKK">DKK</option>
-            <option value="EUR">EUR</option>
-            <option value="GBP">GBP</option>
-            <option value="HKD">HKD</option>
-            <option value="HRK">HRK</option>
-            <option value="HUF">HUF</option>
-            <option value="IDR">IDR</option>
-            <option value="ILS">ILS</option>
-            <option value="INR">INR</option>
-            <option value="ISK">ISK</option>
-            <option value="JPY">JPY</option>
-            <option value="KRW">KRW</option>
-            <option value="MXN">MXN</option>
-            <option value="MYR">MYR</option>
-            <option value="NOK">NOK</option>
-            <option value="NZD">NZD</option>
-            <option value="PHP">PHP</option>
-            <option value="PLN">PLN</option>
-            <option value="RON">RON</option>
-            <option value="RUB">RUB</option>
-            <option value="SEK">SEK</option>
-            <option value="SGD">SGD</option>
-            <option value="THB">THB</option>
-            <option value="TRY">TRY</option>
-            <option value="USD">USD</option>
-            <option value="ZAR">ZAR</option>
-        </select>
-        <br>
-
-        <h4 id="dataset-num-days">Dataset (0) days</h4>
-        <div class="dataset-container">
-
-        <div class="input-daterange input-group" id="datepicker">
-            <input type="text" class="input-sm form-control" name="start" onchange="setNumDays()" id="dataset-from-date"/>
-            <span class="input-group-addon">to</span>
-            <input type="text" class="input-sm form-control" name="end" data-date-end-date="0d" onchange="setNumDays()" id="dataset-to-date"/>
-        </div>
-
-
-        </div>
-        <br>
-
-        <h4>Date to predict</h4>
-        <div class="date-predict-container">
-            <div class="input-group date datepicker">
-                <input type="text" class="form-control">
-                <div class="input-group-addon">
-                    <span class="glyphicon glyphicon-th"></span>
-                </div>
+        <form method="POST" action="{{ url_for('new_prediction') }}">
+            <div class="form-group">
+                <label>Currency (from)</label>
+                <select class="form-control" id="select-currency-from" name="currency_from">
+                    <option value="{{ currency_from if currency_from else 'Select' }}">{{ currency_from if currency_from else 'Select a currency' }}</option>
+                    <option value="AUD">AUD</option>
+                    <option value="BGN">BGN</option>
+                    <option value="BRL">BRL</option>
+                    <option value="CAD">CAD</option>
+                    <option value="CHF">CHF</option>
+                    <option value="CNY">CNY</option>
+                    <option value="CZK">CZK</option>
+                    <option value="DKK">DKK</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="HKD">HKD</option>
+                    <option value="HRK">HRK</option>
+                    <option value="HUF">HUF</option>
+                    <option value="IDR">IDR</option>
+                    <option value="ILS">ILS</option>
+                    <option value="INR">INR</option>
+                    <option value="ISK">ISK</option>
+                    <option value="JPY">JPY</option>
+                    <option value="KRW">KRW</option>
+                    <option value="MXN">MXN</option>
+                    <option value="MYR">MYR</option>
+                    <option value="NOK">NOK</option>
+                    <option value="NZD">NZD</option>
+                    <option value="PHP">PHP</option>
+                    <option value="PLN">PLN</option>
+                    <option value="RON">RON</option>
+                    <option value="RUB">RUB</option>
+                    <option value="SEK">SEK</option>
+                    <option value="SGD">SGD</option>
+                    <option value="THB">THB</option>
+                    <option value="TRY">TRY</option>
+                    <option value="USD">USD</option>
+                    <option value="ZAR">ZAR</option>
+                </select>
             </div>
+
+            <div class="form-group">
+                <label>Currency (to)</label>
+                <select class="form-control" id="select-currency-to" name="currency_to">
+                    <option value="{{ currency_to if currency_to else 'Select' }}">{{ currency_to if currency_to else 'Select a currency' }}</option>
+                    <option value="AUD">AUD</option>
+                    <option value="BGN">BGN</option>
+                    <option value="BRL">BRL</option>
+                    <option value="CAD">CAD</option>
+                    <option value="CHF">CHF</option>
+                    <option value="CNY">CNY</option>
+                    <option value="CZK">CZK</option>
+                    <option value="DKK">DKK</option>
+                    <option value="EUR">EUR</option>
+                    <option value="GBP">GBP</option>
+                    <option value="HKD">HKD</option>
+                    <option value="HRK">HRK</option>
+                    <option value="HUF">HUF</option>
+                    <option value="IDR">IDR</option>
+                    <option value="ILS">ILS</option>
+                    <option value="INR">INR</option>
+                    <option value="ISK">ISK</option>
+                    <option value="JPY">JPY</option>
+                    <option value="KRW">KRW</option>
+                    <option value="MXN">MXN</option>
+                    <option value="MYR">MYR</option>
+                    <option value="NOK">NOK</option>
+                    <option value="NZD">NZD</option>
+                    <option value="PHP">PHP</option>
+                    <option value="PLN">PLN</option>
+                    <option value="RON">RON</option>
+                    <option value="RUB">RUB</option>
+                    <option value="SEK">SEK</option>
+                    <option value="SGD">SGD</option>
+                    <option value="THB">THB</option>
+                    <option value="TRY">TRY</option>
+                    <option value="USD">USD</option>
+                    <option value="ZAR">ZAR</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label>Number of days in the past</label>
+                <input class="form-control" placeholder="50 - 1000" name="num_days_in_past" value="{{ num_days_in_past if num_days_in_past }}">
+            </div>
+
+            <div class="form-group">
+                <label>Number of days in the future to predict</label>
+                <input class="form-control" placeholder="1 - 100" name="num_days_in_future" value="{{ num_days_in_future if num_days_in_future }}">
+            </div>
+
+            <div class="form-group">
+                <label>Sequence Length</label>
+                <input class="form-control" placeholder="25 - 50" name="seq_len" value="{{ seq_len if seq_len }}">
+            </div>
+
+            <div class="form-group">
+                <label>Epochs</label>
+                <input class="form-control" placeholder="1 - 10" name="epochs" value="{{ epochs if epochs }}">
+            </div>
+
+            <div class="form-group">
+                <label>Batch Size</label>
+                <input class="form-control" placeholder="32 - 512" name="batch_size" value="{{ batch_size if batch_size }}">
+            </div>
+
+            <br>
+            <input name="form-btn" type="submit" class="btn btn-danger btn-lg" value="Generate Prediction" onclick="showLoader()">
+
+        </form>
+
+    </div>
+
+    <div class="col-sm-6" style="height:650px;">
+        <div id="loader"></div>
+        <div id="plot-container" class="plot-container" style="padding-top:90px;">
+            {% if results %}
+            <img src="{{ url_for('plot_results', true_data=true_data_str, predicted_data=predicted_data_str) }}"
+                 alt="Image Placeholder" style="width:100%">
+            {% endif %}
         </div>
+    </div>
+
+</div> <!-- /row -->
+
+<div class="row-two" style="padding:25px;">
+    {% if results %}
+        <h2>Results</h2>
         <br>
 
-        <br>
-        <button type="button" class="btn btn-danger btn-lg">Generate Prediction</button>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Date</th>
+                <th>Price</th>
+                <th>Fluctuation</th>
+            </tr>
+            </thead>
+            <tbody>
+
+            <tr class="active">
+                <td>{{ date_today }} (today)</td>
+                <td>{{ '%0.4f' % price_today|float }}</td>
+                <td></td>
+            </tr>
+
+            {% for prediction in predicted_data_denormalized %}
+                <tr class="{{ 'success' if price_today<prediction else 'danger' }}">
+                    <td>{{ dates[loop.index] }}</td>
+                    <td>{{ '%0.4f' % prediction|float }}</td>
+                    <td>{{ '+' if price_today < prediction }}{{ '%0.4f' % (prediction-price_today)|float }}&nbsp;({{ '%0.2f' % (100*(prediction-price_today)/price_today)|float }}%)</td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+
+        <form method="POST" action="{{ url_for('new_prediction') }}">
+            <br>
+
+            <input type="hidden" name="currency_to" value="{{ currency_to }}">
+            <input type="hidden" name="currency_from" value="{{ currency_from }}">
+            <input type="hidden" name="num_days_in_past" value="{{ num_days_in_past }}">
+            <input type="hidden" name="num_days_in_future" value="{{ num_days_in_future }}">
+            <input type="hidden" name="seq_len" value="{{ seq_len }}">
+            <input type="hidden" name="epochs" value="{{ epochs }}">
+            <input type="hidden" name="batch_size" value="{{ batch_size }}">
+            <input type="hidden" name="price_today" value="{{ price_today }}">
+
+            <input type="hidden" name="dates" value="{{ dates }}">
+            <input type="hidden" name="predictions" value="{{ predicted_data_denormalized }}">
+
+            <input name="form-btn" type="submit" class="btn btn-success btn-lg" value="Save Prediction">
+        </form>
+
+    {% endif %}
+</div>
 
 
+<!--<h4 id="dataset-num-days">Dataset (0) days</h4>-->
+<!--<div class="dataset-container">-->
 
-    </div> <!-- /container -->
+<!--<div class="input-daterange input-group" id="datepicker">-->
+<!--<input type="text" class="input-sm form-control" name="start" onchange="setNumDays()" id="dataset-from-date"/>-->
+<!--<span class="input-group-addon">to</span>-->
+<!--<input type="text" class="input-sm form-control" name="end" data-date-end-date="0d" onchange="setNumDays()" id="dataset-to-date"/>-->
+<!--</div>-->
 
+<!--</div>-->
+<!--<br>-->
+
+<!--<h4>Date to predict</h4>-->
+<!--<div class="date-predict-container">-->
+<!--<div class="input-group date datepicker">-->
+<!--<input type="text" class="form-control">-->
+<!--<div class="input-group-addon">-->
+<!--<span class="glyphicon glyphicon-th"></span>-->
+<!--</div>-->
+<!--</div>-->
+<!--</div>-->
+<!--<br>-->
 
 
 
 {% endblock %}
 
 {% block footer_content %}
-    {% include "registration.html" %}
+{% include "registration.html" %}
 {% endblock %}

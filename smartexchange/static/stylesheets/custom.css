@@ -2,7 +2,8 @@
 
 body{
     margin:0px;
-    background-image: linear-gradient(-87deg, #F2F5F6 0%, #DDE5E8 100%);
+    /* background-image: linear-gradient(-87deg, #F2F5F6 0%, #DDE5E8 100%); */
+    background: #f1f1f1;
 }
 
 
@@ -581,4 +582,140 @@ NEW PREDICTION
 
 .date-predict-container{
     max-width: 250px;
+}
+
+/***************************
+LOADER
+****************************/
+
+#loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #3498db;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    position: absolute;
+    margin: auto;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    display:none;
+}
+
+@-webkit-keyframes spin {
+  0% { -webkit-transform: rotate(0deg); }
+  100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/*******************************
+MY ORDERS
+********************************/
+
+#my-orders{
+    margin: -1.0rem -1.0rem;
+}
+
+#my-orders .row{
+    margin-right:0px;
+    margin-left:0px;
+}
+
+#my-orders .transaction-header-row{
+    border-bottom: solid 1px;
+    margin-bottom: 10px;
+    padding-bottom: 2px;
+}
+
+#my-orders .order-row:hover .panel-title .row:first-child{
+    text-decoration: underline;
+}
+
+#my-orders .panel-title .row:first-child{
+    font-size: 18px;
+}
+
+.panel-heading a:after {
+    margin-top: -25px;
+    margin-right: 20px;
+    content: "";
+    position: relative;
+    top: 1px;
+    display: inline-block;
+    font-family: 'Glyphicons Halflings';
+    font-style: normal;
+    font-weight: 400;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    float: right;
+    transition: transform .25s linear;
+    -webkit-transition: -webkit-transform .25s linear;
+}
+
+.panel-heading a[aria-expanded="true"] {
+  background-color: #eee;
+}
+
+.panel-heading a[aria-expanded="true"]:after {
+  content: "\2212";
+  -webkit-transform: rotate(180deg);
+  transform: rotate(180deg);
+}
+
+.panel-heading a[aria-expanded="false"]:after {
+  content: "\002b";
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.panel-body{
+    padding: 10px;
+}
+
+.navbar-right{
+    margin-top: -10px;
+}
+
+.nav-bar-top .nav>li>a{
+    padding-left: 10px;
+    padding-right: 10px;
+}
+
+.container-margin-50{
+    margin: 50px;
+}
+
+.container-margin-25{
+    margin: 25px;
+}
+
+.box--has-shadow {
+    box-shadow: 0.1rem 0 0 0 #d2d2d2, -0.1rem 0 0 0 #d2d2d2, 0 0.1rem 0 0 #b6b6b6, 0 0.2rem 0 0 #d2d2d2, 0.2rem 0 0 0 #e6e6e6, -0.2rem 0 0 0 #e6e6e6, 0 0.3rem 0 0 #e6e6e6, 0 -0.1rem 0 0 #e6e6e6;
+}
+
+.box--is-rounded {
+    border-radius: .4rem;
+}
+
+.box--white {
+    background: #fff;
+}
+
+.box {
+    padding: 1.0rem 1.0rem 0;
+    margin-bottom: 1.1rem;
+}
+
+.box {
+    clear: both;
+    position: relative;
+    margin-bottom: 8px;
 }
