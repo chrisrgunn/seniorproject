@@ -4,6 +4,7 @@ from forex_python.converter import CurrencyRates
 
 app = Flask(__name__)
 app.config.from_object('config')
+app.secret_key = 'mysecret'
 db = MongoAlchemy(app)
 salt = app.config['SALT']
 
