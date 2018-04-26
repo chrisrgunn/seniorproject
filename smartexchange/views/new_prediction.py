@@ -98,7 +98,7 @@ def new_prediction():
 
             dates_formatted = []
 
-            for idx in range(0, len(dates) / 3):
+            for idx in range(0, int(len(dates) / 3)):
                 year = int(dates[idx * 3])
                 month = int(dates[idx * 3 + 1])
                 day = int(dates[idx * 3 + 2])
