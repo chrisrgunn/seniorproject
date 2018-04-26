@@ -284,8 +284,7 @@ def plot_results(predicted_data, true_data):
         predicted_data = predicted_data.split(' ')
         predicted_data = [float(i[:-1]) for i in predicted_data if i!= '']
 
-
-    import StringIO
+    from io import BytesIO
     from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 
     fig = plt.figure(facecolor='white')
@@ -298,7 +297,7 @@ def plot_results(predicted_data, true_data):
     plt.legend()
 
     canvas=FigureCanvas(fig)
-    png_output = StringIO.StringIO()
+    png_output = BytesIO()
     canvas.print_png(png_output)
     response=make_response(png_output.getvalue())
     response.headers['Content-Type'] = 'image/png'
@@ -374,7 +373,7 @@ def create_prediction(currency_to, currency_from, num_days_in_past, num_days_in_
 @app.route('/simple')
 def simple():
     import datetime
-    import StringIO
+    from io import BytesIO
     import random
 
     from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
@@ -395,7 +394,8 @@ def simple():
     ax.xaxis.set_major_formatter(DateFormatter('%Y-%m-%d'))
     fig.autofmt_xdate()
     canvas=FigureCanvas(fig)
-    png_output = StringIO.StringIO()
+    # png_output = StringIO.StringIO()
+    png_output = BytesIO()
     canvas.print_png(png_output)
     response=make_response(png_output.getvalue())
     response.headers['Content-Type'] = 'image/png'
