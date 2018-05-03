@@ -1,11 +1,11 @@
 <div id='cssmenu'>
 <ul>
    <li class='nav-li' id="home-nav"><a href='/home'><span>Home</span></a></li>
-   <li class='has-sub nav-li' id="about-nav"><a href='#'><span>About</span></a></li>
+   <li class='has-sub nav-li' id="about-nav"><a href='/#about-us'><span>About</span></a></li>
    <!--<li class='has-sub nav-li'><a href='#'><span>Current Rates</span></a></li>-->
 
    {% if session['username'] %}
-      <li class='last nav-li' id="my-profile-nav"><a href="#" style="width:auto;"><span>My Profile</span></a></li>
+      <!--<li class='last nav-li' id="my-profile-nav"><a href="#" style="width:auto;"><span>My Profile</span></a></li>-->
       <li class='last nav-li' id="currency-tracker-nav"><a href="/currency_tracker" style="width:auto;"><span>Currency Tracker</span></a></li>
       <li class="last welcome-nav" ><span class="welcome-nav-text">Welcome, {{ session['username'] }}!</span>&nbsp;&nbsp;<a href="/logout" class="logout-nav-text">(logout)</a></li>
    {% else %}

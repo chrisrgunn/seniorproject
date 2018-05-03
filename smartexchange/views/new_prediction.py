@@ -134,12 +134,35 @@ def new_prediction():
 
 def load_data(seq_len, num_of_data_points, currency_from, currency_to):
     currency_rates = CurrencyRates()
-
+    # Get Data (historical price points):
     data = []
+    exchange = Exchange.query.filter(Exchange.currency_from == currency_from,
+                                     Exchange.currency_to == currency_to).first()
+    if exchange is None:
+        exchange = Exchange(currency_from=currency_from, currency_to=currency_to)
+        exchange.save()
+
+    old_trade_rates = TradeRate.query.filter(TradeRate.exchange == exchange).all()
+
+    old_trade_rates_dict = {}
+
+    for old_trade_rate in old_trade_rates:
+        old_trade_rates_dict[old_trade_rate.date] = old_trade_rate.price
+
     for idx in range(0, num_of_data_points):
         curr_date = datetime.date.today()-datetime.timedelta(idx)
-        curr_price = currency_rates.get_rate(currency_from, currency_to, curr_date)
-        data.append(curr_price)
+        curr_datetime = datetime.datetime.combine(curr_date, datetime.datetime.min.time())
+
+        # Before getting the price point, see if we have it stored in the database first
+
+        # If we have the current price point, use it. Otherwise save it to db
+        if (curr_datetime in old_trade_rates_dict): # exists in db
+            data.append(old_trade_rates_dict[curr_datetime])
+        else: # does not exist in db
+            curr_price = currency_rates.get_rate(currency_from, currency_to, curr_date) # Expensive!
+            new_trade_rate = TradeRate(price=curr_price, date=curr_datetime, exchange=exchange)
+            new_trade_rate.save()
+            data.append(curr_price)
 
     sequence_length = seq_len + 1 # add 1 to the sequence length
     results = []
